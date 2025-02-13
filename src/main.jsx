@@ -12,7 +12,7 @@ const router = createBrowserRouter(
   [
     {
       path: "/",
-      element: <HomePage />
+      element: <HomePage />,
     },
     {
       path: "/converter",
@@ -24,7 +24,7 @@ const router = createBrowserRouter(
     }
   ],
   {
-    basename: "/nsconverter",
+    basename: "/nsconverter/",
   }
 );
 

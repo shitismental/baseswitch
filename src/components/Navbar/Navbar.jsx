@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import {useState, useEffect} from "react"
+import {Link} from "react-router-dom"
 
 import burgerIcon from "../../../public/icons/burger-icon.svg"
 import NavbarBurgerMenu from "./NavbarBurgerMenu/NavbarBurgerMenu.jsx";
@@ -31,27 +31,27 @@ function Navbar() {
     <>
       <div className="navbar__container">
         <div className="navbar__wrapper">
-          <div className="container">
-            <nav className="navbar">
-              <Link to="/nsconverter/" className="navbar__logo">
-                <span>Number Base Converter</span>
+        <div className="container">
+          <nav className="navbar">
+            <Link to="/" className="navbar__logo">
+              <span>Number Base Converter</span>
+            </Link>
+            <ul className="navbar__links">
+              <Link to="/" className="navbar__link">
+                <li>Home</li>
               </Link>
-              <ul className="navbar__links">
-                <Link to="/nsconverter/" className="navbar__link">
-                  <li>Home</li>
-                </Link>
-                <Link to="/nsconverter/converter" className="navbar__link">
-                  <li>Converter</li>
-                </Link>
-                <Link to="/nsconverter/about" className="navbar__link">
-                  <li>About</li>
-                </Link>
-              </ul>
-              <button className="navbar__burger_btn" onClick={handleBurgerMenu}>
-                <img src={burgerIcon} alt="burger icon" />
-              </button>
-            </nav>
-          </div>
+              <Link to="/converter" className="navbar__link">
+                <li>Converter</li>
+              </Link>
+              <Link to="/about" className="navbar__link">
+                <li>About</li>
+              </Link>
+            </ul>
+            <button className="navbar__burger_btn" onClick={handleBurgerMenu}>
+              <img src={burgerIcon} alt="burger icon" />
+            </button>
+          </nav>
+        </div>
         </div>
         {menuOpen && isMobile && <NavbarBurgerMenu />}
       </div>
