@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/nsconverter/(.*)",
-      "destination": "/"
+      "destination": "/$1"
     }
   ]
 }
