@@ -24,7 +24,7 @@ const router = createBrowserRouter(
     }
   ],
   {
-    basename: "/nsconverter/",
+    basename: "/nsconverter",
   }
 );
 
