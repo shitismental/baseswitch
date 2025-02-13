@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createHashRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import HomePage from './pages/HomePage/HomePage.jsx'
 import Converter from './pages/Converter/Converter.jsx'
@@ -8,7 +8,7 @@ import AboutPage from './pages/AboutPage/AboutPage.jsx'
 
 import './index.css'
 
-const router = createHashRouter(
+const router = createBrowserRouter(
   [
     {
       path: "/",
@@ -23,6 +23,9 @@ const router = createHashRouter(
       element: <AboutPage />
     }
   ],
+  {
+    basename: "/nsconverter/",
+  }
 );
 
 ReactDOM.createRoot(document.getElementById('root')).render(
