@@ -49,6 +49,8 @@ function Converter() {
         alert("The number and the system are the same.")
       }
     }
+    setNumberInput("");
+    setSystemSelect("");
   }
 
   const handleSystemSelect = e => {
@@ -56,7 +58,7 @@ function Converter() {
   }
 
   const selectPlaceholderStyle = {
-    color: systemSelect ? "#000" : "#ccc",
+    color: systemSelect ? "#000" : "rgba(0, 0, 0, 0.4)",
   }
 
   return (
