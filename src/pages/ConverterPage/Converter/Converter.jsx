@@ -4,6 +4,9 @@ import "./Converter.css"
 
 function Converter() {
 
+  // DISPLAY 
+  const [selectVisible, setSelectVisible] = useState(false);
+
   // INPUTS
   const [numberInput, setNumberInput] = useState('');
   const [systemInput, setSystemInput] = useState('');
@@ -15,12 +18,6 @@ function Converter() {
   const handleNumberInput = e => {
     setNumberInput(e.target.value)
   }
-
-  const handleSystemInput = e => {
-    setSystemInput(e.target.value)
-  }
-
-
 
   const handleConvertButton = () => {
     if (numberInput != defaultNumber && systemInput != defaultSystem) {
@@ -52,14 +49,28 @@ function Converter() {
                 onChange={handleNumberInput}
               />
             </div>
-            <div className="input__container">
-              <input
-                className="input__field"
-                placeholder="Current System..."
-                type="text"
-                value={systemInput}
-                onChange={handleSystemInput}
-              />
+            <div className="input__container select__relative">
+              <div className="select__field" onClick={() => {
+                setSelectVisible(prevSelectVisible => !prevSelectVisible)
+              }}>
+                <p className="select__placeholder">current number system</p>
+              </div>
+              {selectVisible && 
+              <div className="select__options">
+                  <div className="select__option">
+                    <p className="select__option_title">binary</p>
+                  </div>
+                  <div className="select__option">
+                    <p className="select__option_title">octal</p>
+                  </div>
+                  <div className="select__option">
+                    <p className="select__option_title">decimal</p>
+                  </div>
+                  <div className="select__option">
+                    <p className="select__option_title">hexadecimal</p>
+                  </div>
+              </div>
+              }
             </div>
           </div>
           <button
