@@ -1,8 +1,8 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/nsconverter/(.*)",
-      "destination": "/$1"
+      "src": "/[^.]+",
+      "dest": "/"
     }
   ]
 }
