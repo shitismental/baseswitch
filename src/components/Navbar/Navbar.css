@@ -1,0 +1,161 @@
+.navbar__container {
+  position: sticky;
+  width: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  background-color: var(--clr-white);
+}
+
+.navbar__wrapper {
+  border-bottom: 1px solid #ccc;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 5rem;
+  width: 100%;
+}
+
+.navbar__logo {
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: 600;
+  user-select: none;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar__link {
+  font-size: 1.1rem;
+  font-weight: 500;
+  border: 1px solid var(--clr-black);
+  padding: 0.25rem 1rem;
+  border-radius: 5px;
+}
+
+.navbar__link:hover {
+  transition: 
+  background-color 0.15s ease-in-out, 
+  color 0.15s ease-in-out;
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+}
+
+.navbar__link:active {
+  transition: none;
+  transform: scale(0.95);
+}
+
+.navbar__burger_btn {
+  width: 40px;
+  height: 40px;
+  display: none;
+}
+
+.navbar__burger_btn:active {
+  transform: scale(0.9);
+}
+
+.navbar__popup_menu {
+  background-color: rgb(0, 0, 0, 0.1);
+  padding: 1rem 0;
+}
+
+.navbar__popup_links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.navbar__popup_link {
+  font-size: 1.3rem;
+  font-weight: 500;
+  border: 1px solid var(--clr-black);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.navbar__popup_link:hover {
+  transition: 
+  background-color 0.3s ease-in-out, 
+  color 0.3s ease-in-out;
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+}
+
+@media (max-width: 1536px) {
+  
+}
+
+@media (max-width: 1280px) {
+  .navbar__logo {
+    font-size: 1.2rem;
+  }
+
+  .navbar__link {
+    font-size: 1rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .navbar__logo {
+    font-size: 1.1rem;
+  }
+
+  .navbar__links {
+    gap: 0.6rem;
+  }
+
+  .navbar__link {
+    font-size: 1rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .navbar {
+    gap: 1rem;
+  }
+
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__logo {
+    font-size: 1.8rem;
+  }
+
+  .navbar__logo span {
+    display: none;
+  }
+
+  .navbar__logo::after {
+    content: "NBC";
+  }
+
+  .navbar__burger_btn {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 640px) {
+
+}
+
+@media (max-width: 475px) {
+
+}

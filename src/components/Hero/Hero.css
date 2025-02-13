@@ -1,0 +1,142 @@
+.hero__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  flex: 1;
+}
+
+.hero__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  max-width: 60rem;
+}
+
+.hero__img_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 40rem;
+  max-height: 23rem;
+  overflow: hidden;
+  border-radius: 50px;
+}
+
+.hero__img {
+  object-fit: contain;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.hero__title {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.hero__desc {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.hero__btn {
+  background-color: var(--clr-black);
+  border: 1px solid transparent;
+  padding: 0.9rem 1.5rem;
+  color: var(--clr-white);
+  text-transform: capitalize;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 10px;
+  user-select: none;
+}
+
+.hero__btn:hover {
+  transition: all 0.3s ease-in-out;
+  background-color: transparent;
+  color: var(--clr-black);
+  border: 1px solid var(--clr-black);
+}
+
+@media (max-width: 1536px) {
+  
+}
+
+@media (max-width: 1280px) {
+
+}
+
+@media (max-width: 1024px) {
+  .hero__wrapper {
+    gap: 1.5rem;
+  }
+
+  .hero__title {
+    font-size: 2.1rem;
+  }
+
+  .hero__desc {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero__img_container {
+    max-height: 20rem;
+  }
+
+  .hero__wrapper {
+    gap: 1.25rem;
+  }
+
+  .hero__title {
+    font-size: 1.7rem;
+  }
+
+  .hero__desc {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero__img_container {
+    max-height: 20rem;
+  }
+
+  .hero__wrapper {
+    gap: 1.25rem;
+  }
+
+  .hero__title span {
+    display: none;
+  }
+
+  .hero__title::after {
+    font-size: 2rem;
+    content: "Number System Converter";
+  }
+
+  .hero__desc span {
+    display: none;
+  }
+
+  .hero__desc::after {
+    content: "This Number System Converter is designed to seamlessly convert numbers between various systems. This tool was created to help you explore the fascinating world of number systems with ease.";
+  }
+
+  .hero__btn {
+    padding: 0.7rem 1.5rem;
+  }
+}
+
+@media (max-width: 475px) {
+
+}
