@@ -9,29 +9,55 @@ function Converter() {
 
   // INPUTS
   const [numberInput, setNumberInput] = useState('');
-  const [systemInput, setSystemInput] = useState('');
+  const [systemSelect, setSystemSelect] = useState('');
 
   // DATA
   const [defaultNumber, setDefaultNumber] = useState('');
   const [defaultSystem, setDefaultSystem] = useState('');
+
+  useEffect(() => {
+    const handleHideSystemSelect = (e) => {
+      if (!e.target.closest(".select__field")) {
+        setSelectVisible(false);
+      }
+    };
+  
+    if (selectVisible) {
+      window.addEventListener("click", handleHideSystemSelect);
+    } else {
+      window.removeEventListener("click", handleHideSystemSelect);
+    }
+  
+    return () => {
+      window.removeEventListener("click", handleHideSystemSelect);
+    };
+  }, [selectVisible]);
 
   const handleNumberInput = e => {
     setNumberInput(e.target.value)
   }
 
   const handleConvertButton = () => {
-    if (numberInput != defaultNumber && systemInput != defaultSystem) {
-      setDefaultSystem(systemInput);
+    if (numberInput != defaultNumber && systemSelect != defaultSystem) {
+      setDefaultSystem(systemSelect);
       setDefaultNumber(numberInput);
-    } else if (numberInput == defaultNumber || systemInput == defaultSystem) {
-      if (numberInput == defaultNumber && systemInput != defaultSystem) {
-        setDefaultSystem(systemInput)
-      } else if (numberInput != defaultNumber && systemInput == defaultSystem) {
+    } else if (numberInput == defaultNumber || systemSelect == defaultSystem) {
+      if (numberInput == defaultNumber && systemSelect != defaultSystem) {
+        setDefaultSystem(systemSelect)
+      } else if (numberInput != defaultNumber && systemSelect == defaultSystem) {
         setDefaultNumber(numberInput)
       } else {
         alert("The number and the system are the same.")
       }
     }
+  }
+
+  const handleSystemSelect = e => {
+    setSystemSelect(e.currentTarget.dataset.value)
+  }
+
+  const selectPlaceholderStyle = {
+    color: systemSelect ? "#000" : "#ccc",
   }
 
   return (
@@ -50,24 +76,41 @@ function Converter() {
               />
             </div>
             <div className="input__container select__relative">
-              <div className="select__field" onClick={() => {
-                setSelectVisible(prevSelectVisible => !prevSelectVisible)
+              <div className="select__field" onClick={(e) => {
+                e.stopPropagation()
+                setSelectVisible(true)
               }}>
-                <p className="select__placeholder">current number system</p>
+                <p className="select__placeholder" style={selectPlaceholderStyle}>{systemSelect ? systemSelect : "current number system"}</p>
               </div>
               {selectVisible && 
               <div className="select__options">
-                  <div className="select__option">
-                    <p className="select__option_title">binary</p>
+                  <div 
+                  className="select__option" 
+                  data-value="binary"
+                  onClick={handleSystemSelect}
+                  >
+                    <p className="select__option_title" >binary</p>
                   </div>
-                  <div className="select__option">
+                  <div 
+                  className="select__option" 
+                  data-value="octal" 
+                  onClick={handleSystemSelect}
+                  >
                     <p className="select__option_title">octal</p>
                   </div>
-                  <div className="select__option">
+                  <div 
+                  className="select__option" 
+                  data-value="decimal"
+                  onClick={handleSystemSelect}
+                  >
                     <p className="select__option_title">decimal</p>
                   </div>
-                  <div className="select__option">
-                    <p className="select__option_title">hexadecimal</p>
+                  <div 
+                  className="select__option" 
+                  data-value="hexadecimal"
+                  onClick={handleSystemSelect}
+                  >
+                    <p className="select__option_title" >hexadecimal</p>
                   </div>
               </div>
               }

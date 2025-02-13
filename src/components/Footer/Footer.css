@@ -2,6 +2,7 @@
   background-color: var(--clr-white);
   border-top: 1px solid #ccc;
   margin-top: auto;
+  z-index: 1000;
 }
 
 .footer__wrapper {
