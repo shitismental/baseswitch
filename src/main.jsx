@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import HomePage from './pages/HomePage/HomePage.jsx'
-import Converter from './pages/Converter/Converter.jsx'
+import ConverterPage from './pages/ConverterPage/ConverterPage.jsx'
 import AboutPage from './pages/AboutPage/AboutPage.jsx'
 
 import './index.css'
@@ -16,7 +16,7 @@ const router = createBrowserRouter(
     },
     {
       path: "/converter",
-      element: <Converter />
+      element: <ConverterPage />
     },
     {
       path: "/about",

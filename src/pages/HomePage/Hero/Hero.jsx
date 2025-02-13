@@ -1,10 +1,10 @@
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import "./Hero.css"
 import heroImg from "../../../../public/imgs/hero-img.jpg"
 
 function Hero() {
-  return(
+  return (
     <>
       <div className="container hero__container">
         <div className="hero__wrapper">
