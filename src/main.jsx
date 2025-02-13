@@ -8,8 +8,25 @@ import AboutPage from './pages/AboutPage/AboutPage.jsx'
 
 import './index.css'
 
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <HomePage />,
+    },
+    {
+      path: "/converter",
+      element: <Converter />
+    },
+    {
+      path: "/about",
+      element: <AboutPage />
+    }
+  ]
+);
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <HomePage />
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )
