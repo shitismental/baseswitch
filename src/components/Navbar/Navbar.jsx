@@ -33,19 +33,19 @@ function Navbar() {
         <div className="navbar__wrapper">
         <div className="container">
           <nav className="navbar">
-            <Link to="/" className="navbar__logo">
+            <a href="/" className="navbar__logo">
               <span>Number Base Converter</span>
-            </Link>
+            </a>
             <ul className="navbar__links">
-              <Link to="/" className="navbar__link">
+              <a href="/" className="navbar__link">
                 <li>Home</li>
-              </Link>
-              <Link to="/converter" className="navbar__link">
+              </a>
+              <a href="/converter" className="navbar__link">
                 <li>Converter</li>
-              </Link>
-              <Link to="/about" className="navbar__link">
+              </a>
+              <a href="/about" className="navbar__link">
                 <li>About</li>
-              </Link>
+              </a>
             </ul>
             <button className="navbar__burger_btn" onClick={handleBurgerMenu}>
               <img src={burgerIcon} alt="burger icon" />
