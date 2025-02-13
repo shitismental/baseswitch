@@ -16,18 +16,17 @@ function Converter() {
   const [defaultSystem, setDefaultSystem] = useState('');
 
   useEffect(() => {
-    const handleHideSystemSelect = (e) => {
-      if (!e.target.closest(".select__field")) {
-        setSelectVisible(false);
-      }
+    const handleHideSystemSelect = () => {
+      setSelectVisible(false);
+      console.log("Set to false")
     };
-  
+
     if (selectVisible) {
       window.addEventListener("click", handleHideSystemSelect);
     } else {
       window.removeEventListener("click", handleHideSystemSelect);
     }
-  
+
     return () => {
       window.removeEventListener("click", handleHideSystemSelect);
     };
@@ -77,42 +76,42 @@ function Converter() {
             </div>
             <div className="input__container select__relative">
               <div className="select__field" onClick={(e) => {
-                e.stopPropagation()
-                setSelectVisible(true)
+                e.stopPropagation();
+                setSelectVisible(prevSelectVisible => !prevSelectVisible)
               }}>
                 <p className="select__placeholder" style={selectPlaceholderStyle}>{systemSelect ? systemSelect : "current number system"}</p>
               </div>
-              {selectVisible && 
-              <div className="select__options">
-                  <div 
-                  className="select__option" 
-                  data-value="binary"
-                  onClick={handleSystemSelect}
+              {selectVisible &&
+                <div className="select__options">
+                  <div
+                    className="select__option"
+                    data-value="binary"
+                    onClick={handleSystemSelect}
                   >
                     <p className="select__option_title" >binary</p>
                   </div>
-                  <div 
-                  className="select__option" 
-                  data-value="octal" 
-                  onClick={handleSystemSelect}
+                  <div
+                    className="select__option"
+                    data-value="octal"
+                    onClick={handleSystemSelect}
                   >
                     <p className="select__option_title">octal</p>
                   </div>
-                  <div 
-                  className="select__option" 
-                  data-value="decimal"
-                  onClick={handleSystemSelect}
+                  <div
+                    className="select__option"
+                    data-value="decimal"
+                    onClick={handleSystemSelect}
                   >
                     <p className="select__option_title">decimal</p>
                   </div>
-                  <div 
-                  className="select__option" 
-                  data-value="hexadecimal"
-                  onClick={handleSystemSelect}
+                  <div
+                    className="select__option"
+                    data-value="hexadecimal"
+                    onClick={handleSystemSelect}
                   >
                     <p className="select__option_title" >hexadecimal</p>
                   </div>
-              </div>
+                </div>
               }
             </div>
           </div>
