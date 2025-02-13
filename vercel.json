@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "src": "/nsconverter/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}
