@@ -1,8 +1,6 @@
 .hero__container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-top: 2rem;
   flex: 1;
 }
 
@@ -13,6 +11,7 @@
   justify-content: center;
   gap: 2.5rem;
   max-width: 60rem;
+  padding: 2rem 0;
 }
 
 .hero__img_container {

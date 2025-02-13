@@ -6,9 +6,10 @@
   --clr-kindawhite: #d8d7d7;
 }
 
-.root__container {
+.page__container {
   display: flex;
   flex-direction: column;
+  min-height: 100dvh;
 }
 
 * {

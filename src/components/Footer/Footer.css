@@ -1,9 +1,7 @@
 .footer__container {
-  position: sticky;
-  bottom: env(safe-area-inset-bottom);
   background-color: var(--clr-white);
   border-top: 1px solid #ccc;
-  margin-top: 2rem;
+  margin-top: auto;
 }
 
 .footer__wrapper {

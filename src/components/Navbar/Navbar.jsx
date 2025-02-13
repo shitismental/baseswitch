@@ -1,7 +1,10 @@
 import {useState, useEffect} from "react"
-import "./Navbar.css"
+import {Link} from "react-router-dom"
+
 import burgerIcon from "../../../public/icons/burger-icon.svg"
 import NavbarBurgerMenu from "./NavbarBurgerMenu/NavbarBurgerMenu.jsx";
+
+import "./Navbar.css"
 
 function Navbar() {
 
@@ -30,17 +33,17 @@ function Navbar() {
         <div className="navbar__wrapper">
         <div className="container">
           <nav className="navbar">
-            <a href="#" className="navbar__logo"><span>Number Base Converter</span></a>
+            <a href="/" className="navbar__logo"><span>Number Base Converter</span></a>
             <ul className="navbar__links">
-              <a href="#" className="navbar__link">
+              <Link to="/" className="navbar__link">
                 <li>Home</li>
-              </a>
-              <a href="#" className="navbar__link">
+              </Link>
+              <Link to="/converter" className="navbar__link">
                 <li>Converter</li>
-              </a>
-              <a href="#" className="navbar__link">
+              </Link>
+              <Link to="/about" className="navbar__link">
                 <li>About</li>
-              </a>
+              </Link>
             </ul>
             <button className="navbar__burger_btn" onClick={handleBurgerMenu}>
               <img src={burgerIcon} alt="burger icon" />
