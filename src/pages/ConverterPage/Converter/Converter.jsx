@@ -38,6 +38,16 @@ function Converter() {
     return num.split('').every(char => allowedSymbols[system].includes(char) || char === '.');
   };
 
+  const getBase = (system) => {
+    switch (system) {
+      case "binary": return 2;
+      case "octal": return 8;
+      case "decimal": return 10;
+      case "hexadecimal": return 16;
+      default: return 10;
+    }
+  };
+
   const convertNumber = (num, system) => {
     if (!isValidNumber(num, system)) return null;
     const parsedNum = parseInt(num, getBase(system));
@@ -49,16 +59,6 @@ function Converter() {
       decimal: parsedNum.toString(10),
       hexadecimal: parsedNum.toString(16).toUpperCase(),
     };
-  };
-
-  const getBase = (system) => {
-    switch (system) {
-      case "binary": return 2;
-      case "octal": return 8;
-      case "decimal": return 10;
-      case "hexadecimal": return 16;
-      default: return 10;
-    }
   };
 
   const handleConvertButton = () => {
