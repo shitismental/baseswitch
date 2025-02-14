@@ -190,6 +190,10 @@
 
 @media (max-width: 768px) {
 
+  .converter__container {
+    align-items: center;
+  }
+
   .converter__title {
     font-size: 1.6rem;
   }
