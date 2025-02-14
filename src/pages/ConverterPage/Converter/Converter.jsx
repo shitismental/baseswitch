@@ -29,13 +29,13 @@ function Converter() {
   };
 
   const isValidNumber = (num, system) => {
-    const regexMap = {
+    const allowedSymbols = {
       binary: "01",
       octal: "01234567",
       decimal: "0123456789",
       hexadecimal: "0123456789ABCDEF",
     };
-    return num.split('').every(char => regexMap[system].includes(char) || char === '.');
+    return num.split('').every(char => allowedSymbols[system].includes(char) || char === '.');
   };
 
   const convertNumber = (num, system) => {
@@ -76,6 +76,9 @@ function Converter() {
     if (result) {
       setConvertedValues(result);
     }
+
+    setNumberInput("");
+    setSystemSelect("");
   };
 
   const handleSystemSelect = (e) => {
