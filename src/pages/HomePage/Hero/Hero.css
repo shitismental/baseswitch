@@ -85,11 +85,15 @@
   .hero__desc {
     font-size: 1.15rem;
   }
+
+  .hero__img_container {
+    max-width: 30rem;
+  }
 }
 
 @media (max-width: 768px) {
   .hero__img_container {
-    max-height: 20rem;
+    max-width: 25rem;
   }
 
   .hero__wrapper {

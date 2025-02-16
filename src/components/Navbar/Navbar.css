@@ -65,8 +65,8 @@
 }
 
 .navbar__popup_menu {
-  background-color: var(--clr-white);
-  padding-top: 1rem;
+  background-color: transparent;
+  padding: 1rem 0;
 }
 
 .navbar__popup_links {

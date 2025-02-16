@@ -36,7 +36,7 @@ function Navbar() {
             <Link to="/" className="navbar__logo">
               <span>Number System Converter</span>
             </Link>
-            <ul className="navbar__links">
+            {!isMobile && <ul className="navbar__links">
               <Link to="/" className="navbar__link">
                 <li>Home</li>
               </Link>
@@ -46,10 +46,10 @@ function Navbar() {
               <Link to="/about" className="navbar__link">
                 <li>About</li>
               </Link>
-            </ul>
-            <button className="navbar__burger_btn" onClick={handleBurgerMenu}>
+            </ul>}
+            {isMobile && <button className="navbar__burger_btn" onClick={handleBurgerMenu}>
               <img src={burgerIcon} alt="burger icon" />
-            </button>
+            </button>}
           </nav>
         </div>
         </div>
