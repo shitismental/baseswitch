@@ -39,12 +39,13 @@
   border: 1px solid var(--clr-black);
   padding: 0.25rem 1rem;
   border-radius: 5px;
-}
-
-.navbar__link:hover {
   transition: 
   background-color 0.15s ease-in-out, 
   color 0.15s ease-in-out;
+}
+
+.navbar__link:hover {
+
   background-color: var(--clr-black);
   color: var(--clr-white);
 }
@@ -85,12 +86,12 @@
   text-align: center;
   border-radius: 5px;
   overflow: hidden;
-}
-
-.navbar__popup_link:hover {
   transition: 
   background-color 0.3s ease-in-out, 
   color 0.3s ease-in-out;
+}
+
+.navbar__popup_link:hover {
   background-color: var(--clr-black);
   color: var(--clr-white);
 }
