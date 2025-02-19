@@ -24,41 +24,37 @@ function Converter() {
     };
   }, [selectVisible]);
 
+  const DIGITS = "0123456789ABCDEF";
+  const BASES = { binary: 2, octal: 8, decimal: 10, hexadecimal: 16 };
+
+  const isValidNumber = (num, base) => {
+    return [...num.toUpperCase()].every(char => DIGITS.slice(0, base).includes(char));
+  };
+
+  const toDecimal = (num, base) => {
+    let result = 0n;
+    for (let char of num.toUpperCase()) {
+      result = result * BigInt(base) + BigInt(DIGITS.indexOf(char));
+    }
+    return result;
+  };
+
+  const fromDecimal = (num, base) => {
+    let result = "";
+    while (num > 0n) {
+      result = DIGITS[Number(num % BigInt(base))] + result;
+      num /= BigInt(base);
+    }
+    return result || "0";
+  };
+
+  const convertNumber = (num, fromBase, toBase) => {
+    if (!isValidNumber(num, fromBase)) return null;
+    return fromDecimal(toDecimal(num, fromBase), toBase);
+  };
+
   const handleNumberInput = (e) => {
     setNumberInput(e.target.value);
-  };
-
-  const isValidNumber = (num, system) => {
-    const allowedSymbols = {
-      binary: "01",
-      octal: "01234567",
-      decimal: "0123456789",
-      hexadecimal: "0123456789ABCDEF",
-    };
-    return num.split('').every(char => allowedSymbols[system].includes(char) || char === '.');
-  };
-
-  const getBase = (system) => {
-    switch (system) {
-      case "binary": return 2;
-      case "octal": return 8;
-      case "decimal": return 10;
-      case "hexadecimal": return 16;
-      default: return 10;
-    }
-  };
-
-  const convertNumber = (num, system) => {
-    if (!isValidNumber(num, system)) return null;
-    const parsedNum = parseInt(num, getBase(system));
-    if (isNaN(parsedNum)) return null;
-
-    return {
-      binary: parsedNum.toString(2),
-      octal: parsedNum.toString(8),
-      decimal: parsedNum.toString(10),
-      hexadecimal: parsedNum.toString(16).toUpperCase(),
-    };
   };
 
   const handleConvertButton = () => {
@@ -66,16 +62,18 @@ function Converter() {
       alert("Введите число и выберите систему счисления");
       return;
     }
-    if (!isValidNumber(numberInput, systemSelect)) {
+    const fromBase = BASES[systemSelect];
+    if (!isValidNumber(numberInput, fromBase)) {
       alert("Неверный ввод числа для выбранной системы");
       return;
     }
     
     setDefaultSystem(systemSelect);
-    const result = convertNumber(numberInput, systemSelect);
-    if (result) {
-      setConvertedValues(result);
+    const result = {};
+    for (let [key, base] of Object.entries(BASES)) {
+      result[key] = convertNumber(numberInput, fromBase, base);
     }
+    setConvertedValues(result);
 
     setNumberInput("");
     setSystemSelect("");
