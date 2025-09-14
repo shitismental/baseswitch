@@ -145,7 +145,7 @@
   }
 
   .navbar__logo::after {
-    content: "NSC";
+    content: "BS";
   }
 
   .navbar__burger_btn {
