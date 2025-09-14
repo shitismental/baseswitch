@@ -65,13 +65,9 @@
   border: 1px solid var(--clr-black);
 }
 
-@media (max-width: 1536px) {
-  
-}
+@media (max-width: 1536px) {}
 
-@media (max-width: 1280px) {
-
-}
+@media (max-width: 1280px) {}
 
 @media (max-width: 1024px) {
   .hero__wrapper {
@@ -131,11 +127,13 @@
     display: none;
   }
 
+  .hero__desc::after {
+    content: "Base Switch converts numbers between base-3 and decimal, and supports addition and subtraction. A simple tool to explore alternative number systems with ease.";
+  }
+
   .hero__btn {
     padding: 0.7rem 1.5rem;
   }
 }
 
-@media (max-width: 475px) {
-
-}
+@media (max-width: 475px) {}
