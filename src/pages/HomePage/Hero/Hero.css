@@ -124,15 +124,11 @@
 
   .hero__title::after {
     font-size: 2rem;
-    content: "Number System Converter";
+    content: "Base Switch";
   }
 
   .hero__desc span {
     display: none;
-  }
-
-  .hero__desc::after {
-    content: "This Number System Converter is designed to seamlessly convert numbers between various systems. This tool was created to help you explore the fascinating world of number systems with ease.";
   }
 
   .hero__btn {
