@@ -12,8 +12,8 @@ function Hero() {
             <img className="hero__img" src={heroImg} alt="" />
           </div>
           <div className="hero__content">
-            <h1 className="hero__title"><span>Welcome to Number System Converter</span></h1>
-            <p className="hero__desc"><span>This Number System Converter is designed to seamlessly convert numbers between various systems such as binary, octal, decimal and hexadecimal. Whether you're a student, developer, or just curious, this tool is here to help you explore the fascinating world of number systems with ease.</span></p>
+            <h1 className="hero__title"><span>Welcome to Base Switch</span></h1>
+            <p className="hero__desc"><span>Base Switch is designed to seamlessly convert numbers between base-3 and decimal systems. It also supports basic arithmetic operations such as addition and subtraction in these number systems. Whether you're a student, developer, or simply curious, Base Switch helps you explore the fascinating world of alternative number systems with ease.</span></p>
           </div>
           <Link to="/converter">
             <button className="hero__btn">get started</button>

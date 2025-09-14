@@ -17,6 +17,12 @@
   gap: 1.5rem;
 }
 
+.converter__buttons {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
 .converter__title {
   text-transform: capitalize;
   font-weight: 500;
@@ -105,8 +111,9 @@
 }
 
 .converter__btn {
+  width: 100%;
   background-color: var(--clr-black);
-  padding: 0.8rem 0;
+  padding: 0.8rem 2rem;
   border-radius: 5px;
   color: var(--clr-white);
   text-transform: capitalize;
@@ -190,6 +197,10 @@
 
 @media (max-width: 768px) {
 
+  .converter__buttons {
+    gap: 1.25rem;
+  }
+
   .converter__container {
     align-items: center;
   }
@@ -220,6 +231,8 @@
 }
 
 @media (max-width: 640px) {
+
+  .converter__buttons,
   .converter__inputs {
     flex-direction: column;
     gap: 0.75rem;

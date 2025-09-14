@@ -3,145 +3,185 @@ import "./Converter.css";
 
 function Converter() {
   const [selectVisible, setSelectVisible] = useState(false);
-  const [numberInput, setNumberInput] = useState("");
   const [systemSelect, setSystemSelect] = useState("");
-  const [convertedValues, setConvertedValues] = useState({});
-  const [defaultSystem, setDefaultSystem] = useState("");
+  const [numberInput, setNumberInput] = useState("");
+  const [convertedValue, setConvertedValue] = useState(null);
+
+  const [numberA, setNumberA] = useState("");
+  const [numberB, setNumberB] = useState("");
+  const [operationResult, setOperationResult] = useState(null);
 
   useEffect(() => {
-    const handleHideSystemSelect = () => {
-      setSelectVisible(false);
-    };
-
+    const handleHideSystemSelect = () => setSelectVisible(false);
     if (selectVisible) {
       window.addEventListener("click", handleHideSystemSelect);
     } else {
       window.removeEventListener("click", handleHideSystemSelect);
     }
-
     return () => {
       window.removeEventListener("click", handleHideSystemSelect);
     };
   }, [selectVisible]);
 
-  const DIGITS = "0123456789ABCDEF";
-  const BASES = { binary: 2, octal: 8, decimal: 10, hexadecimal: 16 };
+  const isValidBase3 = (num) => [...num].every(char => "012".includes(char));
 
-  const isValidNumber = (num, base) => {
-    return [...num.toUpperCase()].every(char => DIGITS.slice(0, base).includes(char));
-  };
-
-  const toDecimal = (num, base) => {
+  const toDecimal = (num) => {
     let result = 0n;
-    for (let char of num.toUpperCase()) {
-      result = result * BigInt(base) + BigInt(DIGITS.indexOf(char));
+    for (let char of num) {
+      result = result * 3n + BigInt(char);
     }
     return result;
   };
 
-  const fromDecimal = (num, base) => {
-    let result = "";
+  const fromDecimal = (num) => {
+    if (num < 0n) return "-" + fromDecimal(-num);
+    if (num === 0n) return "0";
+    let res = "";
     while (num > 0n) {
-      result = DIGITS[Number(num % BigInt(base))] + result;
-      num /= BigInt(base);
+      res = (num % 3n).toString() + res;
+      num /= 3n;
     }
-    return result || "0";
+    return res;
   };
 
-  const convertNumber = (num, fromBase, toBase) => {
-    if (!isValidNumber(num, fromBase)) return null;
-    return fromDecimal(toDecimal(num, fromBase), toBase);
-  };
-
-  const handleNumberInput = (e) => {
-    setNumberInput(e.target.value);
-  };
+  // CONVERT
+  const handleNumberInput = (e) => setNumberInput(e.target.value);
 
   const handleConvertButton = () => {
     if (!numberInput || !systemSelect) {
-      alert("Введите число и выберите систему счисления");
+      alert("Введіть число і виберіть систему!");
       return;
     }
-    const fromBase = BASES[systemSelect];
-    if (!isValidNumber(numberInput, fromBase)) {
-      alert("Неверный ввод числа для выбранной системы");
+    if (systemSelect !== "base-3") {
+      alert("Тут дозволено тільки base-3");
       return;
     }
-    
-    setDefaultSystem(systemSelect);
-    const result = {};
-    for (let [key, base] of Object.entries(BASES)) {
-      result[key] = convertNumber(numberInput, fromBase, base);
+    if (!isValidBase3(numberInput)) {
+      alert("Невірне число — тільки 0,1,2");
+      return;
     }
-    setConvertedValues(result);
-
+    setConvertedValue(toDecimal(numberInput).toString());
     setNumberInput("");
     setSystemSelect("");
   };
 
-  const handleSystemSelect = (e) => {
-    setSystemSelect(e.currentTarget.dataset.value);
+  // ADD / SUBTRACT
+  const handleOperation = (type) => {
+    if (!isValidBase3(numberA) || !isValidBase3(numberB)) {
+      alert("У обох числах допускаються тільки 0,1,2");
+      return;
+    }
+    const decA = toDecimal(numberA);
+    const decB = toDecimal(numberB);
+    const res = type === "add" ? decA + decB : decA - decB;
+    setOperationResult(fromDecimal(res));
   };
+
+  const handleSystemSelect = (e) =>
+    setSystemSelect(e.currentTarget.dataset.value);
 
   const selectPlaceholderStyle = {
     color: systemSelect ? "#000" : "rgba(0, 0, 0, 0.4)",
   };
 
   return (
-    <>
-      <div className="container converter__container">
-        <div className="converter__wrapper">
-          <h1 className="converter__title">number system converter</h1>
-          <div className="converter__inputs">
-            <div className="input__container">
-              <input
-                className="input__field"
-                placeholder="Number..."
-                type="text"
-                value={numberInput}
-                onChange={handleNumberInput}
-              />
-            </div>
-            <div className="input__container select__relative">
-              <div className="select__field" onClick={(e) => {
-                e.stopPropagation();
-                setSelectVisible(prevSelectVisible => !prevSelectVisible);
-              }}>
-                <p className="select__placeholder" style={selectPlaceholderStyle}>{systemSelect ? systemSelect : "current number system"}</p>
-              </div>
-              {selectVisible &&
-                <div className="select__options">
-                  {["binary", "octal", "decimal", "hexadecimal"].map((sys) => (
-                    <div
-                      key={sys}
-                      className="select__option"
-                      data-value={sys}
-                      onClick={handleSystemSelect}
-                    >
-                      <p className="select__option_title">{sys}</p>
-                    </div>
-                  ))}
-                </div>
-              }
-            </div>
+    <div className="container converter__container">
+      <div className="converter__wrapper">
+        <h1 className="converter__title">base switch converter</h1>
+
+        {/* CONVERT */}
+        <div className="converter__inputs">
+          <div className="input__container">
+            <input
+              className="input__field"
+              placeholder="Number..."
+              type="text"
+              value={numberInput}
+              onChange={handleNumberInput}
+            />
           </div>
-          <button
-            className="converter__btn"
-            onClick={handleConvertButton}
-          >convert</button>
-          <div className="converter__results_container">
-            <p className="converter__result_title">conversion results</p>
-            <div className="converter__results">
-              {Object.entries(convertedValues).map(([system, value]) => (
-                <p key={system} className="converter__result">
-                  {system === defaultSystem ? `${system} (default)` : system}: <b>{value}</b>
-                </p>
-              ))}
+          <div className="input__container select__relative">
+            <div
+              className="select__field"
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectVisible(prev => !prev);
+              }}
+            >
+              <p className="select__placeholder" style={selectPlaceholderStyle}>
+                {systemSelect || "current number system"}
+              </p>
             </div>
+            {selectVisible && (
+              <div className="select__options">
+                <div
+                  className="select__option"
+                  data-value="base-3"
+                  onClick={handleSystemSelect}
+                >
+                  <p className="select__option_title">base-3</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <button className="converter__btn" onClick={handleConvertButton}>
+          convert
+        </button>
+
+        <div className="converter__results_container">
+          <p className="converter__result_title">conversion result</p>
+          <div className="converter__results">
+            {convertedValue !== null && (
+              <p className="converter__result">
+                decimal: <b>{convertedValue}</b>
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* OPERATIONS */}
+        <h2 className="converter__title" style={{marginTop:"20px"}}>base-3 operations</h2>
+
+        <div className="converter__inputs">
+          <input
+            className="input__field"
+            placeholder="First number..."
+            type="text"
+            value={numberA}
+            onChange={(e) => setNumberA(e.target.value)}
+          />
+          <input
+            className="input__field"
+            placeholder="Second number..."
+            type="text"
+            value={numberB}
+            onChange={(e) => setNumberB(e.target.value)}
+          />
+        </div>
+
+        <div className="converter__buttons">
+          <button className="converter__btn" onClick={() => handleOperation("add")}>
+            Add
+          </button>
+          <button className="converter__btn" onClick={() => handleOperation("sub")}>
+            Subtract
+          </button>
+        </div>
+
+        <div className="converter__results_container">
+          <p className="converter__result_title">operation result</p>
+          <div className="converter__results">
+            {operationResult !== null && (
+              <p className="converter__result">
+                base-3: <b>{operationResult}</b>
+              </p>
+            )}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

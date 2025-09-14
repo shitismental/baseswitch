@@ -34,7 +34,7 @@ function Navbar() {
         <div className="container">
           <nav className="navbar">
             <Link to="/" className="navbar__logo">
-              <span>Number System Converter</span>
+              <span>Base Switch</span>
             </Link>
             {!isMobile && <ul className="navbar__links">
               <Link to="/" className="navbar__link">

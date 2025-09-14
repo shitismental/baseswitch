@@ -5,8 +5,8 @@ function AboutHero() {
     <>
       <div className="container abouthero__container">
         <div className="abouthero__wrapper">
-          <p className="abouthero__title">Цей сайт зроблений за день, без сну, без кави, але з великим бажанням</p>
-          <a target="_blank" href="https://github.com/CuteBuffy/nsconverter" className="abouthero__github"><span>повний код тут!</span></a>
+          <p className="abouthero__title">Повний код можна знайти за посиланням нижче!</p>
+          <a target="_blank" href="https://github.com/CuteBuffy/baseswitch" className="abouthero__github"><span>повний код тут!</span></a>
         </div>
       </div>
     </>
