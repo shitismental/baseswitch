@@ -3,7 +3,7 @@ import "./Converter.css";
 
 function Converter() {
   const [selectVisible, setSelectVisible] = useState(false);
-  const [systemSelect, setSystemSelect] = useState("");
+  // const [systemSelect, setSystemSelect] = useState("");
   const [numberInput, setNumberInput] = useState("");
   const [convertedValue, setConvertedValue] = useState(null);
 
@@ -11,17 +11,17 @@ function Converter() {
   const [numberB, setNumberB] = useState("");
   const [operationResult, setOperationResult] = useState(null);
 
-  useEffect(() => {
-    const handleHideSystemSelect = () => setSelectVisible(false);
-    if (selectVisible) {
-      window.addEventListener("click", handleHideSystemSelect);
-    } else {
-      window.removeEventListener("click", handleHideSystemSelect);
-    }
-    return () => {
-      window.removeEventListener("click", handleHideSystemSelect);
-    };
-  }, [selectVisible]);
+  // useEffect(() => {
+  //   const handleHideSystemSelect = () => setSelectVisible(false);
+  //   if (selectVisible) {
+  //     window.addEventListener("click", handleHideSystemSelect);
+  //   } else {
+  //     window.removeEventListener("click", handleHideSystemSelect);
+  //   }
+  //   return () => {
+  //     window.removeEventListener("click", handleHideSystemSelect);
+  //   };
+  // }, [selectVisible]);
 
   const isValidBase3 = (num) => [...num].every(char => "012".includes(char));
 
@@ -48,21 +48,21 @@ function Converter() {
   const handleNumberInput = (e) => setNumberInput(e.target.value);
 
   const handleConvertButton = () => {
-    if (!numberInput || !systemSelect) {
+    if (!numberInput) {
       alert("Введіть число і виберіть систему!");
       return;
     }
-    if (systemSelect !== "base-3") {
-      alert("Тут дозволено тільки base-3");
-      return;
-    }
+    // if (systemSelect !== "base-3") {
+    //   alert("Тут дозволено тільки base-3");
+    //   return;
+    // }
     if (!isValidBase3(numberInput)) {
       alert("Невірне число — тільки 0,1,2");
       return;
     }
     setConvertedValue(toDecimal(numberInput).toString());
     setNumberInput("");
-    setSystemSelect("");
+    // setSystemSelect("");
   };
 
   // ADD / SUBTRACT
@@ -77,12 +77,12 @@ function Converter() {
     setOperationResult(fromDecimal(res));
   };
 
-  const handleSystemSelect = (e) =>
-    setSystemSelect(e.currentTarget.dataset.value);
+  // const handleSystemSelect = (e) =>
+  //   setSystemSelect(e.currentTarget.dataset.value);
 
-  const selectPlaceholderStyle = {
-    color: systemSelect ? "#000" : "rgba(0, 0, 0, 0.4)",
-  };
+  // const selectPlaceholderStyle = {
+  //   color: systemSelect ? "#000" : "rgba(0, 0, 0, 0.4)",
+  // };
 
   return (
     <div className="container converter__container">
@@ -100,7 +100,7 @@ function Converter() {
               onChange={handleNumberInput}
             />
           </div>
-          <div className="input__container select__relative">
+          {/* <div className="input__container select__relative">
             <div
               className="select__field"
               onClick={(e) => {
@@ -123,7 +123,7 @@ function Converter() {
                 </div>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
 
         <button className="converter__btn" onClick={handleConvertButton}>
